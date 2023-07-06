@@ -25,6 +25,6 @@
 
 		<a href="{{ route('password.request') }}">Forgot your password?</a>
 
-		<button type="submit" class="btn btn-primary ms-3">Login</button>
+		<button type="submit" class="btn btn-secondary ms-3">Login</button>
 	</form>
 @endsection
