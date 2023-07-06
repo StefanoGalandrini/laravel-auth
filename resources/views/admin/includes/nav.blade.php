@@ -23,15 +23,9 @@
 						<li><a class="dropdown-item" href="{{ route('admin.projects.create') }}">Create</a></li>
 					</ul>
 				</li>
-				{{-- <li class="nav-item">
-					<a class="nav-link disabled">Disabled</a>
-				</li> --}}
 			</ul>
 
-			{{-- <form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success" type="submit">Search</button>
-			</form> --}}
+			<a href="{{ route('admin.projects.index') }}" class="btn btn-success">Back to Index</a>
 
 		</div>
 	</div>
