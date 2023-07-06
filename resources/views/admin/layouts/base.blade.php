@@ -12,8 +12,7 @@
 <body>
 	@include('admin.includes.header')
 
-	<div class="container d-flex align-items-center justify-content-center mt-5 mb-5 p-5 rounded border"
-		style="width: 30vw;">
+	<div class="container-fluid d-flex align-items-center justify-content-center mt-5 mb-5 p-5 rounded border">
 
 		<main>
 			@yield('contents')
