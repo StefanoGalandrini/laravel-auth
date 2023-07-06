@@ -12,7 +12,7 @@
 					<a class="nav-link" href{{ route('admin.dashboard') }}">Dashboard</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="{{ route('admin.names.create') }}" role="button"
+					<a class="nav-link dropdown-toggle" href="{{ route('admin.projects.create') }}" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false">
 						NOME RISORSE
 					</a>
