@@ -19,7 +19,7 @@ class ProjectsTableSeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             $project = new Project;
 
-            $project->title = $faker->words(rand(3, 10), true);
+            $project->title = $faker->words(rand(2, 5), true);
             $project->url_image = 'https://picsum.photos/id/' . rand(1, 1080) . '/500/300';
             $project->description = $faker->paragraph(rand(2, 10), true);
             $project->creation_date = $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d');
