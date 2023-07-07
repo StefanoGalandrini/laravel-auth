@@ -2,12 +2,12 @@
 
 @section('contents')
 	{{-- Messaggio di conferma cancellazione --}}
-	{{-- @if (session('delete_success'))
+	@if (session('delete_success'))
 		@php $project = session('delete_success') @endphp
 		<div class="alert alert-danger">
-			Il Progetto "{{ $project->title }}" è stato eliminato
+			Project "{{ $project->title }}" has been deleted
 		</div>
-	@endif --}}
+	@endif
 
 	{{-- @if (session('update_success'))
 		<div class="alert alert-success">
@@ -34,18 +34,42 @@
 						<td>{{ $project->creation_date }}</td>
 						<td><a href="{{ $project->github_url }}">{{ $project->url_repo }}</a></td>
 						<td>
-							<a href="{{ route('admin.projects.show', ['project' => $project->id]) }}" class="btn btn-warning btn-sm">Show</a>
-							<a href="{{ route('admin.projects.edit', ['project' => $project->id]) }}" class="btn btn-primary btn-sm">Edit</a>
-							<form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST" class="d-inline">
-								@csrf
-								@method('DELETE')
-								<button type="submit" class="btn btn-danger btn-sm">Delete</button>
-							</form>
+							<a href="{{ route('admin.projects.show', ['project' => $project]) }}" class="btn btn-warning btn-sm">Show</a>
+							<a href="{{ route('admin.projects.edit', ['project' => $project]) }}" class="btn btn-primary btn-sm">Edit</a>
+							<button type="button" class="btn btn-danger js-delete" data-bs-toggle="modal" data-bs-target="#deleteModal"
+								data-id="{{ $project->id }}">
+								Delete
+							</button>
 						</td>
 					</tr>
 				@endforeach
 			</tbody>
 		</table>
+
+
+		<!-- Modal -->
+		<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Delete</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						Are you sure?
+					</div>
+					<div class="modal-footer">
+						<form action="" data-template="{{ route('admin.projects.destroy', ['project' => '*****']) }}" method="post"
+							class="d-inline-block" id="confirm-delete">
+							@csrf
+							@method('delete')
+							<button class="btn btn-danger">Yes</button>
+						</form>
+						<button type="button" class="btn btn-secondary">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	{{ $projects->links() }}

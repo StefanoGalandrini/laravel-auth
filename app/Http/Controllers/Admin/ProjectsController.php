@@ -8,6 +8,23 @@ use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
 {
+
+    private $validations =  [
+        'title'     => 'required|string|min:5|max:100',
+        'url_image'     => 'required|url|max:200',
+        'description'     => 'required|string',
+        'creation_date' => 'required|date',
+        'url_repo'      => 'required|url|max:200',
+    ];
+
+    private $validation_messages = [
+        'required'        => ':attribute is a required field',
+        'min'        => ':attribute must be at least :min characters long',
+        'max'        => ':attribute must be less than :max characters long',
+        'url'        => ':attribute must be a valid URL address',
+    ];
+
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +54,24 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate Data
+        $request->validate($this->validations, $this->validation_messages);
+
+
+        $data = $request->all();
+
+        // Save Data
+        $newProject = new Project();
+
+        $newProject->title = $data['title'];
+        $newProject->url_image = $data['url_image'];
+        $newProject->description = $data['description'];
+        $newProject->creation_date = $data['creation_date'];
+        $newProject->url_repo = $data['url_repo'];
+
+        $newProject->save();
+
+        return redirect()->route('admin.projects.show', ['project' => $newProject]);
     }
 
     /**
@@ -59,7 +93,7 @@ class ProjectsController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('admin.projects.edit', [$project => 'project']);
     }
 
     /**
@@ -71,7 +105,22 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        //
+        // Validate Data
+        $request->validate($this->validations, $this->validation_messages);
+
+
+        $data = $request->all();
+
+        // Update Data
+        $project->title = $data['title'];
+        $project->url_image = $data['url_image'];
+        $project->description = $data['description'];
+        $project->creation_date = $data['creation_date'];
+        $project->url_repo = $data['url_repo'];
+
+        $project->update();
+
+        return redirect()->route('admin.projects.show', ['project' => $project]);
     }
 
     /**
@@ -82,6 +131,8 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+
+        return redirect()->route('admin.projects.index')->with('delete_success', $project);
     }
 }
