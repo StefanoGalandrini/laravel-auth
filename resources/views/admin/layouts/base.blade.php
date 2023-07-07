@@ -14,7 +14,7 @@
 
 	<div class="container-fluid d-flex align-items-center justify-content-center mt-5 mb-5 p-5 rounded border">
 
-		<main class="w-50">
+		<main class="w-75">
 			@yield('contents')
 		</main>
 

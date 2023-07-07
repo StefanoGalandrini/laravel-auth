@@ -2,12 +2,12 @@
 
 @section('contents')
 	@if (session('update_success'))
-		@php $project = session('update_success') @endphp
+		@php $project = session('delete_success') @endphp
 		<div class="alert alert-success">
 			Project "{{ $project->title }}" has been successfully updated
 		</div>
 	@endif
-	<div class="card" style="width: 40vw">
+	<div class="card mx-auto rounded" style="width: 30vw">
 		<img src="{{ $project->url_image }}" alt="{{ $project->title }}" class="card-img-top">
 		<div class="card-body">
 			<h2 class="card-title">PROJECT:</h2>
@@ -17,7 +17,7 @@
 		</div>
 		<ul class="list-group list-group-flush">
 			<li class="list-group-item">
-				<p>Created on: {{ $project->creation_date }}</p>
+				<p>Created on: {{ \Carbon\Carbon::parse($project->creation_date)->format('d M Y') }}</p>
 			</li>
 			<li class="list-group-item">
 				<p>URL Github</p>
