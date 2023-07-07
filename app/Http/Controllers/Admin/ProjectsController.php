@@ -119,7 +119,7 @@ class ProjectsController extends Controller
             'url_repo' => $data['url_repo']
         ]);
 
-        return redirect()->route('admin.projects.show', ['project' => $project]);
+        return redirect()->route('admin.projects.show', ['project' => $project])->with('update_success', $project);
     }
 
     /**

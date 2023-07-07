@@ -21,13 +21,17 @@
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="{{ route('admin.projects.index') }}">Index</a></li>
 						<li><a class="dropdown-item" href="{{ route('admin.projects.create') }}">Create</a></li>
-						<li><a class="dropdown-item" href="{{ route('admin.projects.edit', ['project' => $project]) }}">Edit</a></li>
-						<li>
-							<button type="button" class="btn btn-danger btn-sm js-delete ms-2" data-bs-toggle="modal"
-								data-bs-target="#deleteModal" data-id="{{ $project->id }}">
-								Delete
-							</button>
-						</li>
+						@if (isset($project))
+							<li><a class="dropdown-item" href="{{ route('admin.projects.edit', ['project' => $project]) }}">Edit</a></li>
+						@endif
+						@if (isset($project))
+							<li>
+								<button type="button" class="btn btn-danger btn-sm js-delete ms-2" data-bs-toggle="modal"
+									data-bs-target="#deleteModal" data-id="{{ $project->id }}">
+									Delete
+								</button>
+							</li>
+						@endif
 					</ul>
 				</li>
 			</ul>

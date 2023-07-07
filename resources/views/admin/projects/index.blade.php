@@ -9,11 +9,12 @@
 		</div>
 	@endif
 
-	@if (session('update_success'))
+	{{-- @if (session('update_success'))
+		@php $project = session('delete_success') @endphp
 		<div class="alert alert-success">
-			{{ session('update_success') }}
+			Project "{{ $project->title }}" has been successfully updated
 		</div>
-	@endif
+	@endif --}}
 
 	<div class="d-flex justify-content-center">
 		<table class="table table-bordered table-secondary table-striped table-hover table-rounded">
