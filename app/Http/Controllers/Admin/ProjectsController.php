@@ -93,7 +93,7 @@ class ProjectsController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('admin.projects.edit', [$project => 'project']);
+        return view('admin.projects.edit', ['project' => $project]);
     }
 
     /**
@@ -108,17 +108,16 @@ class ProjectsController extends Controller
         // Validate Data
         $request->validate($this->validations, $this->validation_messages);
 
-
         $data = $request->all();
 
         // Update Data
-        $project->title = $data['title'];
-        $project->url_image = $data['url_image'];
-        $project->description = $data['description'];
-        $project->creation_date = $data['creation_date'];
-        $project->url_repo = $data['url_repo'];
-
-        $project->update();
+        $updated = $project->update([
+            'title' => $data['title'],
+            'url_image' => $data['url_image'],
+            'description' => $data['description'],
+            'creation_date' => $data['creation_date'],
+            'url_repo' => $data['url_repo']
+        ]);
 
         return redirect()->route('admin.projects.show', ['project' => $project]);
     }

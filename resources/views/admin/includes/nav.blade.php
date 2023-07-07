@@ -1,6 +1,6 @@
 @php $user = Auth::user(); @endphp
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary px-5">
 	<div class="container-fluid">
 		<a class="navbar-brand h1" href="{{ route('guests.home') }}">MY PROJECTS</a>
 
@@ -43,8 +43,6 @@
 					</ul>
 				</li>
 			</ul>
-			<a href="{{ route('admin.projects.index') }}" class="btn btn-success">Project Index</a>
-
 		</div>
 	</div>
 </nav>

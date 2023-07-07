@@ -29,7 +29,7 @@ Route::middleware(['auth', 'verified'])
     });
 
 
-Route::middleware('auth')
+Route::middleware('auth', 'verified')
     ->name('admin.')
     ->prefix('admin')
     ->group(function () {

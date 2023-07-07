@@ -30,7 +30,7 @@
 		<div class="mb-3">
 			<label for="url_image" class="form-label">URL Image</label>
 			<input type="url" class="form-control @error('url_image') is-invalid @enderror" id="url_image" name="url_image"
-				value="{{ old('url_image') }}">
+				value="{{ old('url_image', 'https://picsum.photos/500/300') }}">
 			@error('url_image')
 				<div class="invalid-feedback">
 					{{ $message }}

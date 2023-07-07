@@ -1,7 +1,7 @@
 @extends('admin.layouts.base')
 
 @section('contents')
-	<h1>Add New Project</h1>
+	<h1>Edit Project</h1>
 
 	{{-- @if ($errors->any())
         <div class="alert alert-danger">
@@ -13,14 +13,14 @@
         </div>
     @endif --}}
 
-	<form method="POST" action="{{ route('admin.projects.update', ['project' => $project]) }}" novalidate>
+	<form method="POST" action="{{ route('admin.projects.update', $project) }}" novalidate>
 		@csrf
-        @method('PUT')
+		@method('PUT')
 
 		<div class="mb-3">
 			<label for="title" class="form-label">Title</label>
-			<input type="text" class="form-control @error('titolo') is-invalid @enderror" id="title" name="title"
-				value="{{ old('title', $project->'title') }}">
+			<input type="text" class="form-control @error('title') is-invalid @enderror" id="title" name="title"
+				value="{{ old('title', $project->title) }}">
 			@error('title')
 				<div class="invalid-feedback">
 					{{ $message }}
@@ -29,10 +29,10 @@
 		</div>
 
 		<div class="mb-3">
-			<label for="src" class="form-label">URL Image</label>
-			<input type="url" class="form-control @error('src') is-invalid @enderror" id="src" name="src"
-				value="{{ old('src') }}">
-			@error('src')
+			<label for="url_image" class="form-label">URL Image</label>
+			<input type="url" class="form-control @error('url_image') is-invalid @enderror" id="url_image" name="url_image"
+				value="{{ old('url_image', $project->url_image) }}">
+			@error('url_image')
 				<div class="invalid-feedback">
 					{{ $message }}
 				</div>
@@ -42,7 +42,7 @@
 		<div class="mb-3">
 			<label for="description" class="form-label">Description</label>
 			<textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3"
-			 name="description">{{ old('description') }}</textarea>
+			 name="description">{{ old('description', $project->description) }}</textarea>
 			@error('description')
 				<div class="invalid-feedback">
 					{{ $message }}
@@ -51,39 +51,28 @@
 		</div>
 
 		<div class="mb-3">
-			<label for="date" class="form-label">Creation Date</label>
-			<input type="date" class="form-control @error('date') is-invalid @enderror" id="date" name="date"
-				value="{{ old('date') }}">
-			@error('date')
+			<label for="creation_date"" class="form-label">Creation Date</label>
+			<input type="date" class="form-control @error('creation_date') is-invalid @enderror" id="creation_date"
+				name="creation_date"" value="{{ old('creation_date', $project->creation_date) }}">
+			@error('creation_date')
 				<div class="invalid-feedback">
 					{{ $message }}
 				</div>
 			@enderror
 		</div>
 
-		{{-- <div class="mb-3">
-			<label for="description" class="form-label">Description</label>
-			<input type="number" class="form-control @error('description') is-invalid @enderror" id="description"
-				name="description" value="{{ old('description') }}">
-			<div class="invalid-feedback">
-				@error('description')
+		<div class="mb-3">
+			<label for="url_repo" class="form-label">URL repo</label>
+			<input type="url" class="form-control @error('url_repo') is-invalid @enderror" id="url_repo" name="url_repo"
+				value="{{ old('url_repo', $project->url_repo) }}">
+			@error('url_repo')
+				<div class="invalid-feedback">
 					{{ $message }}
-				@enderror
-			</div>
+				</div>
+			@enderror
 		</div>
 
-		<div class="mb-3">
-			<label for="peso" class="form-label">Peso</label>
-			<input type="number" class="form-control @error('peso') is-invalid @enderror" id="peso" name="peso"
-				value="{{ old('peso') }}">
-			<div class="invalid-feedback">
-				@error('peso')
-					{{ $message }}
-				@enderror
-			</div>
-		</div> --}}
 
-
-		<button class="btn btn-primary">Update</button>
+		<button class="btn btn-success px-5 mt-3">Edit</button>
 	</form>
 @endsection
