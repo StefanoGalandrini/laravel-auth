@@ -21,6 +21,13 @@
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="{{ route('admin.projects.index') }}">Index</a></li>
 						<li><a class="dropdown-item" href="{{ route('admin.projects.create') }}">Create</a></li>
+						<li><a class="dropdown-item" href="{{ route('admin.projects.edit', ['project' => $project]) }}">Edit</a></li>
+						<li>
+							<button type="button" class="btn btn-danger btn-sm js-delete ms-2" data-bs-toggle="modal"
+								data-bs-target="#deleteModal" data-id="{{ $project->id }}">
+								Delete
+							</button>
+						</li>
 					</ul>
 				</li>
 			</ul>
@@ -46,3 +53,27 @@
 		</div>
 	</div>
 </nav>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h1 class="modal-title fs-5" id="exampleModalLabel">Confirm Delete</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				Are you sure?
+			</div>
+			<div class="modal-footer">
+				<form action="" data-template="{{ route('admin.projects.destroy', ['project' => '*****']) }}" method="post"
+					class="d-inline-block" id="confirm-delete">
+					@csrf
+					@method('delete')
+					<button class="btn btn-danger">Yes</button>
+				</form>
+				<button type="button" class="btn btn-secondary">Cancel</button>
+			</div>
+		</div>
+	</div>
+</div>
